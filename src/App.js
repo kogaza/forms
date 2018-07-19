@@ -12,15 +12,16 @@ class App extends Component {
         {id: 2, nr: 2},
         {id: 3, nr: 1}
       ],
-      showFirst: false,
     };
   }
-  addForm = (id,typ) => {
+
+  addForm = (id,typForm,typSelect) => {
     let forms = this.state.forms;
     let firstCount = forms.filter((p,i) => p.nr === 1);
     console.log('first count: ',firstCount);
-    firstCount.length === 3 && typ === 1 ? alert('Więcej nie można') :
-    forms.splice(id+1,0,{id: forms.length, nr:typ});
+    console.log('typ select: ',typSelect);
+    firstCount.length === 3 && typForm === 1 ? alert('Więcej nie można') :
+    forms.splice(id+1,0,{id: forms.length, nr:typForm});
     this.setState({
       forms,
     })
@@ -32,12 +33,14 @@ class App extends Component {
         <h1>Form Builder</h1>
         
         {this.state.forms.map((p,i) => p.nr === 1 ? 
-                                       <First addForm={(typ) => this.addForm(typ)} idForms={i}
+                                       <First addForm={(typForm) => this.addForm(typForm)} 
+                                              idForms={i}
                                         key={i}/> : 
-                                        <Next addForm={(typ) => this.addForm(typ)} idForms={i}
+                                        <Next addForm={(typForm) => this.addForm(typForm)}
+                                              idForms={i}
                                         key={i}/>)}
 
-        <button className="add-input" onClick={() => this.addForm(this.state.forms.length,1)}>Add Input</button>
+        <button className="add-input" onClick={() => this.addForm(this.state.forms.length,1,'kalosze')}>Add Input</button>
       </div >
     );
   }

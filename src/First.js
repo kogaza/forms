@@ -3,7 +3,7 @@ import React from 'react';
 class First extends React.Component {
   render() {
     return (
-    <div className="frame">
+    <div className="frame" id={this.props.idForms}>
       <form className="first">
         <label htmlFor="question">Question</label>
         <input name="question" />
@@ -14,7 +14,7 @@ class First extends React.Component {
           <option value="number">Number</option>
         </select>
         <div className="buttons">
-          <button onClick={() => this.props.addNext()}>Add Sub-Input</button>
+          <div onClick={() => this.props.addForm(this.props.idForms,2)}>Add Sub-Input</div>
           <button>Delete</button>
         </div>
       </form>

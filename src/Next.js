@@ -2,7 +2,7 @@ import React from 'react';
 
 class Next extends React.Component {
   render() {
-      return <div className="frame">
+      return <div className="frame" id={this.props.idForms}>
           <form action="" className="next">
             <div className="first-line">
               <label htmlFor="condition" className="label-condition">Condition</label>
@@ -27,7 +27,7 @@ class Next extends React.Component {
               <option value="number">Number</option>
             </select>
             <div className="buttons">
-              <button type="submit">Add Sub-Input</button>
+              <div onClick={() => this.props.addForm(this.props.idForms,2)}>Add Sub-Input</div>
               <button>Delete</button>
             </div>
           </form>

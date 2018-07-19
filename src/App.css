@@ -1,28 +1,66 @@
-.App {
-  text-align: center;
+* {
+  box-sizing: border-box;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+body {
+  background-color: rgb(255, 187, 148);
+  font-family: sans;
 }
-
-.App-title {
-  font-size: 1.5em;
+.container {
+  width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
 }
-
-.App-intro {
-  font-size: large;
+.frame {
+  border: 1px solid grey;
+  padding: 10px;
+  width: 500px;
+  
 }
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.first, .next {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+label {
+  width: 100px;
+  padding: 5px;
+  margin: 5px;
+}
+input, .select-type, .two-select {
+  width: 350px;
+  margin: 5px;
+}
+button {
+  width: 100px;
+  padding: 5px;
+  margin: 5px;
+}
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+.first-line {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.condition {
+  width: 70%;
+  padding: 5px;
+}
+.true-false {
+  width: 30%;
+  padding: 5px;
+}
+.label-condition {
+  width: 100px;
 }

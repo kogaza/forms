@@ -8,23 +8,26 @@ class App extends Component {
     super(props);
     this.state = {
       forms: [
-        { id: 1, nr: 1 },
-        { id: 2, nr: 2 },
-        { id: 3, nr: 1 }
+        { id: 1, formType: 1, selectType: null, depth: 0},
+        { id: 2, formType: 2, selectType: 'Yes/No', depth: 1},
+        { id: 3, formType: 1, selectType: null, depth: 0}
       ],
     };
   }
 
-  addForm = (id, typForm, typSelect) => {
+  addForm = (id, formType, selectType, depth) => {
     let forms = this.state.forms;
-    let firstCount = forms.filter((p, i) => p.nr === 1);
+    let firstCount = forms.filter((p, i) => p.formType === 1);
     console.log('first count: ', firstCount);
-    console.log('typ select: ', typSelect);
-    firstCount.length === 3 && typForm === 1 ? alert('Więcej nie można') :
-      forms.splice(id + 1, 0, { id: forms.length, nr: typForm });
-    this.setState({
-      forms,
-    })
+    console.log('typ select: ', selectType);
+    if (firstCount.length >= 3 && formType === 1) {
+      alert('Więcej nie można');
+    } else {
+      forms.splice(id + 1, 0, { id: forms.length, formType, selectType, depth });
+      this.setState({
+        forms,
+      })
+    }
   }
   delForm = (id) => {
     let forms = this.state.forms;
@@ -35,23 +38,26 @@ class App extends Component {
   }
 
   render() {
+    
     return (
       <div className="container">
         <h1>Form Builder</h1>
 
-        {this.state.forms.map((p, i) => p.nr === 1 ?
+        {this.state.forms.map((p, i) => p.formType === 1 ?
           <First
-            addForm={(typForm) => this.addForm(typForm)}
-            delForm={(typForm) => this.delForm(typForm)}
+            addForm={this.addForm}
+            delForm={this.delForm}
             idForms={i}
             key={i} /> :
           <Next
-            addForm={(typForm) => this.addForm(typForm)}
-            delForm={(typForm) => this.delForm(typForm)}
+            addForm={this.addForm}
+            delForm={this.delForm}
+            selectType={p.selectType}
+            depth={p.depth}
             idForms={i}
             key={i} />)}
 
-        <button className="add-input" onClick={() => this.addForm(this.state.forms.length, 1, 'kalosze')}>Add Input</button>
+        <button className="add-input" onClick={() => this.addForm(this.state.forms.length, 1, null, 0)}>Add Input</button>
       </div >
     );
   }

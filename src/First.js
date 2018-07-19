@@ -4,30 +4,31 @@ class First extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectValue: 'ble',
+      selectValue: 'true-false',
     };
   }
   handleChange = (event) => {
     this.setState({
-      selectValue: event.targer.value,
+      selectValue: event.target.value,
     })
   }
   render() {
+    const {selectValue} = this.state;
+    const {addForm,delForm,idForms} = this.props;
     return (
       <div className="frame" id={this.props.idForms}>
         <form className="first">
           <label htmlFor="question">Question</label>
           <input name="question" />
           <label htmlFor="type">Type</label>
-          <select className="select-type" onChange={this.handleChange}>
-            <option value="select-type">Select type</option>
+          <select className="select-type" onChange={this.handleChange} value={selectValue}>
             <option value="true-false">Yes/No</option>
             <option value="text">Text</option>
             <option value="number">Number</option>
           </select>
           <div className="buttons">
-            <div onClick={() => this.props.addForm(this.props.idForms, 2, "kalosze")}>Add Sub-Input</div>
-            <div onClick={() => this.props.delForm(this.props.idForms)}>Delete</div>
+            <div className="button" onClick={() => addForm(idForms, 2, selectValue, 1)}>Add Sub-Input</div>
+            <div className="button" onClick={() => delForm(idForms)}>Delete</div>
           </div>
         </form>
       </div>

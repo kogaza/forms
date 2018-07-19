@@ -27,7 +27,7 @@ class First extends React.Component {
           </select>
           <div className="buttons">
             <div onClick={() => this.props.addForm(this.props.idForms, 2, "kalosze")}>Add Sub-Input</div>
-            <button>Delete</button>
+            <div onClick={() => this.props.delForm(this.props.idForms)}>Delete</div>
           </div>
         </form>
       </div>

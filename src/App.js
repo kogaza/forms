@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Home from './Home';
+import Preview from './Preview';
+import Export from './Export';
 
 
 class App extends Component {
@@ -16,6 +18,8 @@ class App extends Component {
             </ul>
           </nav>
           <Route exact path='/' component={Home} />>
+          <Route path='/preview' component={Preview} />>
+          <Route path='/export' component={Export} />>
       </div >
       </Router>
 

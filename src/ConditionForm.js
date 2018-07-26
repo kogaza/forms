@@ -4,7 +4,6 @@ class ConditionForm extends React.Component {
 
   render() {
     const { selectType } = this.props;
-    console.log(selectType);
     switch (selectType) {
       case 'true-false':
         return (

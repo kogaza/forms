@@ -1,7 +1,7 @@
 import React from 'react';
 import ConditionForm from './ConditionForm';
 
-class Next extends React.Component {
+class NextForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -38,4 +38,4 @@ class Next extends React.Component {
     </div>
   }
 }
-export default Next;
+export default NextForm;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-class First extends React.Component {
+class FirstForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -37,4 +37,4 @@ class First extends React.Component {
 }
 
 
-export default First;
+export default FirstForm;

@@ -119,7 +119,7 @@ class App extends Component {
               forms={this.state.forms}
             />
           )}/>
-          <Route path='/preview' render={() => <Preview dupa={this.state} />} />
+          <Route path='/preview' render={() => <Preview test={this.state} />} />
           <Route path='/export' component={Export} />
         </div >
       </Router>

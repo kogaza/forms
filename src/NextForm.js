@@ -5,7 +5,8 @@ class NextForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectValue: 'true-false',
+      selectValue: "true-false",
+      questionValue: "",
     };
   }
   handleChange = (event) => {
@@ -13,8 +14,13 @@ class NextForm extends React.Component {
       selectValue: event.target.value,
     })
   }
+  handleQuestion = (event) => {
+    this.setState({
+      questionValue: event.target.value,
+    })
+  }
   render() {
-    const { selectValue } = this.state;
+    const { selectValue, questionValue } = this.state;
     const { addForm, delForm, idForms, selectType, depth } = this.props;
     return <div className="frame" id={this.props.idForms} style={{marginLeft: depth*20}}>
       <form action="" className="next">
@@ -23,7 +29,7 @@ class NextForm extends React.Component {
           <ConditionForm selectType={selectType}/>
         </div>
         <label htmlFor="question">Question</label>
-        <input name="question" />
+        <input name="question" onChange={this.handleQuestion} value={questionValue}/>
         <label htmlFor="type">Type</label>
         <select name="type" className="select-type" onChange={this.handleChange} value={selectValue}>
           <option value="true-false">Yes/No</option>
@@ -31,7 +37,7 @@ class NextForm extends React.Component {
           <option value="number">Number</option>
         </select>
         <div className="buttons">
-          <div className="button" onClick={() => addForm(idForms, 2, selectValue, depth+1)}>Add Sub-Input</div>
+          <div className="button" onClick={() => addForm(idForms, 2, selectValue, depth+1, questionValue)}>Add Sub-Input</div>
           <div className="button" onClick={() => delForm(idForms)}>Delete</div>
         </div>
       </form>

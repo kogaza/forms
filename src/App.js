@@ -66,15 +66,15 @@ class App extends Component {
     this.setState({ [key]: value });
   }
 
-  addForm = (id, formType, selectType, depth, question) => {
+  addForm = (id, formType, selectType, depth) => {
     let forms = this.state.forms;
     let firstCount = forms.filter((p, i) => p.formType === 1);
     if (firstCount.length >= 3 && formType === 1) {
       alert('Więcej nie można');
     } else {
-      forms[id].selectType = selectType;
-      forms[id].question = question;
-      forms.splice(id + 1, 0, { id: forms.length, formType, selectType, depth, question});
+      // forms[id].selectType = selectType;
+      // forms[id].question = question;
+      forms.splice(id + 1, 0, { id: forms.length, formType, selectType, depth});
       this.setState({
         forms,
       })
@@ -87,19 +87,15 @@ class App extends Component {
       forms,
     })
   }
-  handleChange = (number,event) => {
-    console.log('mamy: ',event);
-    console.log('numer: ',number);
+  changeType = (number) => {
     // const state = this.state.forms;
     // state[number].questionValue = event;
     // this.setState({
     //   state,
     // })
-    // console.log('state hangleChange: ', state);
   }
 
   render() {
-    // console.log('App State: ', this.state);
     return (
       <Router>
         <div className="container">
@@ -115,7 +111,7 @@ class App extends Component {
             <Home
               addForm={this.addForm}
               delForm={this.delForm}
-              handleChange={this.handleChange}
+              changeType={this.changeType}
               forms={this.state.forms}
             />
           )}/>

@@ -3,8 +3,8 @@ import React from 'react';
 class ConditionForm extends React.Component {
 
   render() {
-    const { selectType } = this.props;
-    switch (selectType) {
+    const { type } = this.props;
+    switch (type) {
       case 'true-false':
         return (
           <div className="two-select">

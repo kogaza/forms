@@ -5,43 +5,59 @@ class NextForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectValue: "true-false",
-      questionValue: "",
+      forms: [],
+      selectType: 'true-false',
+      question: "",
     };
   }
-  handleChange = (event) => {
+  componentDidMount() {
     this.setState({
-      selectValue: event.target.value,
+      forms: this.props.forms,
+    })
+  }
+
+  changeType = (event, id) => {
+    const forms = this.state.forms;
+    forms[id].selectType = event.target.value;
+    this.setState({
+      forms,
+      selectType: event.target.value,
     })
   }
   handleQuestion = (event) => {
     this.setState({
-      questionValue: event.target.value,
+      question: event.target.value,
     })
   }
   render() {
-    const { selectValue, questionValue } = this.state;
-    const { addForm, delForm, idForms, selectType, depth } = this.props;
-    return <div className="frame" id={this.props.idForms} style={{marginLeft: depth*20}}>
-      <form action="" className="next">
-        <div className="first-line">
-          <label htmlFor="condition" className="label-condition">Condition</label>
-          <ConditionForm selectType={selectType}/>
-        </div>
-        <label htmlFor="question">Question</label>
-        <input name="question" onChange={this.handleQuestion} value={questionValue}/>
-        <label htmlFor="type">Type</label>
-        <select name="type" className="select-type" onChange={this.handleChange} value={selectValue}>
-          <option value="true-false">Yes/No</option>
-          <option value="text">Text</option>
-          <option value="number">Number</option>
-        </select>
-        <div className="buttons">
-          <div className="button" onClick={() => addForm(idForms, 2, selectValue, depth+1, questionValue)}>Add Sub-Input</div>
-          <div className="button" onClick={() => delForm(idForms)}>Delete</div>
-        </div>
-      </form>
-    </div>
+    const { selectType, question, forms } = this.state;
+    const { addForm, delForm, idForms, type, depth } = this.props;
+    return (
+      <div className="frame" id={this.props.idForms} style={{ marginLeft: 20 }}>
+        <form className="next">
+          <div className="first-line">
+            <label htmlFor="condition" className="label-condition">Condition</label>
+            <ConditionForm type={type} />
+          </div>
+          <label htmlFor="question">Question</label>
+          <input name="question" onChange={this.handleQuestion} value={question} />
+          <label htmlFor="type">Type</label>
+          <select
+            className="select-type"
+            onChange={(p) => this.changeType(p, idForms)}
+            value={selectType}
+          >
+            <option value="true-false">Yes/No</option>
+            <option value="text">Text</option>
+            <option value="number">Number</option>
+          </select>
+          <div className="buttons">
+            <div className="button" onClick={() => addForm(idForms, 2, selectType, depth + 1)}>Add Sub-Input</div>
+            <div className="button" onClick={() => delForm(idForms)}>Delete</div>
+          </div>
+        </form>
+      </div>
+    );
   }
 }
 export default NextForm;

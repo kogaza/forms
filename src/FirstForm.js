@@ -6,10 +6,10 @@ class FirstForm extends React.Component {
     this.state = {
       forms: [],
       selectType: 'true-false',
-      question: "",
+      question: '',
     };
   }
-  componentDidMount() {
+  componentWillMount() {
     this.setState({
       forms: this.props.forms,
     })
@@ -23,8 +23,11 @@ class FirstForm extends React.Component {
       selectType: event.target.value,
     })
   }
-  handleQuestion = (event) => {
+  changeQuestion = (event, id) => {
+    const forms = this.state.forms;
+    forms[id].question = event.target.value;
     this.setState({
+      forms,
       question: event.target.value,
     })
   }
@@ -35,19 +38,22 @@ class FirstForm extends React.Component {
       <div className="frame" id={this.props.idForms}>
         <form className="first">
           <label htmlFor="question">Question</label>
-          <input name="question" />
+          <input name="question"
+            onChange={(p) => this.changeQuestion(p, idForms)}
+            value={forms[idForms].question}
+          />
           <label htmlFor="type">Type</label>
           <select
             className="select-type"
             onChange={(p) => this.changeType(p, idForms)}
-            value={selectType}
+            value={forms[idForms].selectType}
           >
             <option value="true-false">Yes/No</option>
             <option value="text">Text</option>
             <option value="number">Number</option>
           </select>
           <div className="buttons">
-            <div className="button" onClick={() => addForm(idForms, 2, selectType, 1)}>Add Sub-Input</div>
+            <div className="button" onClick={() => addForm(idForms, 2, selectType, 1, question)}>Add Sub-Input</div>
             <div className="button" onClick={() => delForm(idForms)}>Delete</div>
           </div>
         </form>

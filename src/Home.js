@@ -13,6 +13,7 @@ class Home extends Component {
             addForm={this.props.addForm}
             delForm={this.props.delForm}
             changeType={this.props.changeType}
+            question={this.props.question}
             forms={this.props.forms}
             idForms={i}
             key={i} /> :
@@ -27,7 +28,7 @@ class Home extends Component {
 
         <button
           className="add-input"
-          onClick={() => this.props.addForm(this.props.forms.length, 1, 'true-false', 0)}
+          onClick={() => this.props.addForm(this.props.forms.length, 1, 'true-false', 0, '')}
         >
           Add Input
         </button>

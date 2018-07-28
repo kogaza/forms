@@ -66,7 +66,7 @@ class App extends Component {
     this.setState({ [key]: value });
   }
 
-  addForm = (id, formType, selectType, depth) => {
+  addForm = (id, formType, selectType, depth, question) => {
     let forms = this.state.forms;
     let firstCount = forms.filter((p, i) => p.formType === 1);
     if (firstCount.length >= 3 && formType === 1) {
@@ -74,7 +74,7 @@ class App extends Component {
     } else {
       // forms[id].selectType = selectType;
       // forms[id].question = question;
-      forms.splice(id + 1, 0, { id: forms.length, formType, selectType, depth});
+      forms.splice(id + 1, 0, { id: forms.length, formType, selectType, depth, question});
       this.setState({
         forms,
       })
@@ -112,6 +112,7 @@ class App extends Component {
               addForm={this.addForm}
               delForm={this.delForm}
               changeType={this.changeType}
+              question={this.question}
               forms={this.state.forms}
             />
           )}/>

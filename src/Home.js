@@ -12,8 +12,7 @@ class Home extends Component {
           <FirstForm
             addForm={this.props.addForm}
             delForm={this.props.delForm}
-            changeType={this.props.changeType}
-            question={this.props.question}
+            // question={this.props.question}
             forms={this.props.forms}
             idForms={i}
             key={i} /> :
@@ -21,7 +20,7 @@ class Home extends Component {
             addForm={this.props.addForm}
             delForm={this.props.delForm}
             forms={this.props.forms}
-            type={p.selectType}
+            // type={p.selectType}
             depth={p.depth}
             idForms={i}
             key={i} />)}

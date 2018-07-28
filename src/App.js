@@ -87,14 +87,6 @@ class App extends Component {
       forms,
     })
   }
-  changeType = (number) => {
-    // const state = this.state.forms;
-    // state[number].questionValue = event;
-    // this.setState({
-    //   state,
-    // })
-  }
-
   render() {
     return (
       <Router>
@@ -111,8 +103,6 @@ class App extends Component {
             <Home
               addForm={this.addForm}
               delForm={this.delForm}
-              changeType={this.changeType}
-              question={this.question}
               forms={this.state.forms}
             />
           )}/>
@@ -120,7 +110,6 @@ class App extends Component {
           <Route path='/export' component={Export} />
         </div >
       </Router>
-
     );
   }
 }

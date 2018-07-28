@@ -34,7 +34,7 @@ class NextForm extends React.Component {
   }
   render() {
     const { selectType, questionNext, forms } = this.state;
-    const { addForm, delForm, idForms, type, depth } = this.props;
+    const { addForm, delForm, idForms, depth } = this.props;
     return (
       <div className="frame" id={this.props.idForms} style={{ marginLeft: 20*depth }}>
         <form className="next">
@@ -45,7 +45,7 @@ class NextForm extends React.Component {
           <label htmlFor="question">Question</label>
           <input name="question"
             onChange={(p) => this.changeQuestion(p, idForms)}
-            value={forms[idForms].questionNext}
+            value={forms[idForms].question}
           />
           <label htmlFor="type">Type</label>
           <select
@@ -58,7 +58,7 @@ class NextForm extends React.Component {
             <option value="number">Number</option>
           </select>
           <div className="buttons">
-            <div className="button" onClick={() => addForm(idForms, 2, selectType, depth + 1, questionNext)}>Add Sub-Input</div>
+            <div className="button" onClick={() => addForm(idForms, 2, selectType, depth + 1, '')}>Add Sub-Input</div>
             <div className="button" onClick={() => delForm(idForms)}>Delete</div>
           </div>
         </form>

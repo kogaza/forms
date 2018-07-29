@@ -33,27 +33,27 @@ class FirstForm extends React.Component {
   }
   render() {
     const { selectType, question, forms } = this.state;
-    const { addForm, delForm, idForms, } = this.props;
+    const { addForm, delForm, idArray, idForms, parentNr } = this.props;
     return (
-      <div className="frame" id={this.props.idForms}>
+      <div className="frame" id={this.props.idArray}>
         <form className="first">
           <label htmlFor="question">Question</label>
           <input name="question"
-            onChange={(p) => this.changeQuestion(p, idForms)}
-            value={forms[idForms].question}
+            onChange={(p) => this.changeQuestion(p, idArray)}
+            value={forms[idArray].question}
           />
           <label htmlFor="type">Type</label>
           <select
             className="select-type"
-            onChange={(p) => this.changeType(p, idForms)}
-            value={forms[idForms].selectType}
+            onChange={(p) => this.changeType(p, idArray)}
+            value={forms[idArray].selectType}
           >
             <option value="true-false">Yes/No</option>
             <option value="text">Text</option>
             <option value="number">Number</option>
           </select>
           <div className="buttons">
-            <div className="button" onClick={() => addForm(idForms, 2, selectType, 1, question)}>Add Sub-Input</div>
+            <div className="button" onClick={() => addForm(idForms, 2, selectType, 1, question, parentNr)}>Add Sub-Input</div>
             <div className="button" onClick={() => delForm(idForms)}>Delete</div>
           </div>
         </form>

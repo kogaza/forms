@@ -4,7 +4,6 @@ import FirstForm from './FirstForm';
 import NextForm from './NextForm';
 
 class Home extends Component {
-  
   render() {
     return (
       <div className="container">
@@ -12,22 +11,26 @@ class Home extends Component {
           <FirstForm
             addForm={this.props.addForm}
             delForm={this.props.delForm}
-            // question={this.props.question}
+            parentNr={p.parentNumber}
             forms={this.props.forms}
-            idForms={i}
+            idForms={p.id}
+            idArray={i}
             key={i} /> :
           <NextForm
             addForm={this.props.addForm}
             delForm={this.props.delForm}
             forms={this.props.forms}
-            // type={p.selectType}
+            parentNr={p.parentNumber}
             depth={p.depth}
-            idForms={i}
+            idForms={p.id}
+            idArray={i}
             key={i} />)}
 
         <button
           className="add-input"
-          onClick={() => this.props.addForm(this.props.forms.length, 1, 'true-false', 0, '')}
+          onClick={() => {
+            this.props.addForm(0, 1, 'true-false', 0, '', this.props.parentNumber)
+          }}
         >
           Add Input
         </button>

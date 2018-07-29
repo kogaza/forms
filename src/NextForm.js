@@ -7,7 +7,6 @@ class NextForm extends React.Component {
     this.state = {
       forms: [],
       selectType: 'true-false',
-      questionNext: '',
     };
   }
   componentWillMount() {
@@ -29,36 +28,35 @@ class NextForm extends React.Component {
     forms[id].question = event.target.value;
     this.setState({
       forms,
-      questionNext: event.target.value,
     })
   }
   render() {
-    const { selectType, questionNext, forms } = this.state;
-    const { addForm, delForm, idForms, depth } = this.props;
+    const { selectType, forms } = this.state;
+    const { addForm, delForm, idArray, idForms, depth, parentNr } = this.props;
     return (
-      <div className="frame" id={this.props.idForms} style={{ marginLeft: 20*depth }}>
+      <div className="frame" id={this.props.idArray} style={{ marginLeft: 20*depth }}>
         <form className="next">
           <div className="first-line">
             <label htmlFor="condition" className="label-condition">Condition</label>
-            <ConditionForm type={forms[idForms-1].selectType} />
+            <ConditionForm type={forms[idArray-1].selectType} />
           </div>
           <label htmlFor="question">Question</label>
           <input name="question"
-            onChange={(p) => this.changeQuestion(p, idForms)}
-            value={forms[idForms].question}
+            onChange={(p) => this.changeQuestion(p, idArray)}
+            value={forms[idArray].question}
           />
           <label htmlFor="type">Type</label>
           <select
             className="select-type"
-            onChange={(p) => this.changeType(p, idForms)}
-            value={forms[idForms].selectType}
+            onChange={(p) => this.changeType(p, idArray)}
+            value={forms[idArray].selectType}
           >
             <option value="true-false">Yes/No</option>
             <option value="text">Text</option>
             <option value="number">Number</option>
           </select>
           <div className="buttons">
-            <div className="button" onClick={() => addForm(idForms, 2, selectType, depth + 1, '')}>Add Sub-Input</div>
+            <div className="button" onClick={() => addForm(idForms, 2, selectType, depth + 1, '', parentNr)}>Add Sub-Input</div>
             <div className="button" onClick={() => delForm(idForms)}>Delete</div>
           </div>
         </form>

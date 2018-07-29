@@ -9,6 +9,8 @@ class App extends Component {
     super(props);
     this.state = {
       forms: [],
+      parentNumber: 0,
+      elementNr: 1,
     };
   }
 
@@ -66,25 +68,55 @@ class App extends Component {
     this.setState({ [key]: value });
   }
 
-  addForm = (id, formType, selectType, depth, question) => {
+  addForm = (idForms, formType, selectType, depth, question, parentNr) => {
     let forms = this.state.forms;
+    let elementNr = this.state.elementNr;
     let firstCount = forms.filter((p, i) => p.formType === 1);
-    if (firstCount.length >= 3 && formType === 1) {
-      alert('Więcej nie można');
+    let parentNumber = this.state.parentNumber;
+    if (formType === 1) {
+      parentNumber++;
+      if (firstCount.length >= 3) {
+        alert('Więcej nie można');
+      } else {
+        forms.push({ id: elementNr, formType, selectType, depth, question, parentNumber });
+      }
     } else {
-      // forms[id].selectType = selectType;
-      // forms[id].question = question;
-      forms.splice(id + 1, 0, { id: forms.length, formType, selectType, depth, question});
-      this.setState({
-        forms,
-      })
+      parentNumber = parentNr;
+      let idArray = forms.findIndex(p => p.id === idForms);
+      forms.splice(idArray + 1, 0, { id: elementNr, formType, selectType, depth, question, parentNumber });
     }
+    this.setState({
+      forms,
+      parentNumber,
+      elementNr: elementNr + 1
+    })
   }
   delForm = (id) => {
     let forms = this.state.forms;
+    let clickedElement = forms.find(p => p.id === id);
+    let depth = clickedElement.depth;
+    let parentNr = clickedElement.parentNumber;
+    let toRemove = forms.filter(
+      (p) => (
+        (
+          p.depth > depth &&
+          p.parentNumber === parentNr
+        ) ||
+        p.id === id
+      )
+    );
+    forms = this.state.forms;
+    let afterremoving = forms;
+    for (let i = 0; i < forms.length; i++) {
+      for (let j = 0; j < toRemove.length; j++) {
+        if (forms[i] === toRemove[j]) {
+          afterremoving.splice(i, 1);
+        }
+      }
+    }
     forms.splice(id, 1);
     this.setState({
-      forms,
+      forms: afterremoving,
     })
   }
   render() {
@@ -103,9 +135,11 @@ class App extends Component {
             <Home
               addForm={this.addForm}
               delForm={this.delForm}
+              parentNumber={this.state.parentNumber}
+              elementNr={this.state.elementNr}
               forms={this.state.forms}
             />
-          )}/>
+          )} />
           <Route path='/preview' render={() => <Preview test={this.state} />} />
           <Route path='/export' component={Export} />
         </div >

@@ -32,7 +32,7 @@ class FirstForm extends React.Component {
     })
   }
   render() {
-    const { selectType, question, forms } = this.state;
+    const { selectType, forms } = this.state;
     const { addForm, delForm, idArray, idForms, parentNr } = this.props;
     return (
       <div className="frame" id={this.props.idArray}>

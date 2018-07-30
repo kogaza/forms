@@ -21,13 +21,27 @@ class Answers extends Component {
     let position = forms.findIndex(p => p.id === id);
     let actualElement = forms.find(p => p.id === id);
     let nextElement = forms[position + 1];
+    let condition = nextElement.condition;
+    let value = parseInt(nextElement.value);
     if (actualElement.parentNumber === nextElement.parentNumber) {
-      console.log('next element: ',nextElement.value);
-      console.log('actual element: ',e.target.value)
-      if (nextElement.value == e.target.value) {
-        this.props.showForm(id, true);
-      } else {
-        this.props.showForm(id, false, actualElement.parentNumber);
+      if (condition === 'equals') {
+        if (e.target.valuee === value) {
+          this.props.showForm(id, true);
+        } else {
+          this.props.showForm(id, false, actualElement.parentNumber);
+        }
+      } else if (condition === 'Greater') {
+        if (e.target.value > value) {
+          this.props.showForm(id, true);
+        } else {
+          this.props.showForm(id, false, actualElement.parentNumber);
+        }
+      } else if (condition === 'Less') {
+        if (e.target.value < value && e.target.value !== '' ) {
+          this.props.showForm(id, true);
+        } else {
+          this.props.showForm(id, false, actualElement.parentNumber);
+        }
       }
     }
     switch (selectType) {
@@ -37,28 +51,22 @@ class Answers extends Component {
             selectedOption: e.target.value,
           })
         );
-        break;
       case 'number':
         return (
           this.setState({
             answerNumber: e.target.value
           })
         );
-        break;
       default:
         return (
           this.setState({
             answerText: e.target.value
           })
         );
-        break;
     }
   }
-
-
   render() {
-    const { depth, question, selectType, formType, show, id } = this.props;
-    const { forms } = this.state;
+    const { depth, question, selectType, formType, show, id, condition } = this.props;
     if (!show) {
       return (
         <div></div>
@@ -94,7 +102,6 @@ class Answers extends Component {
             </form>
           </div>
         );
-        break;
       case 'number':
         return (
           <form className='preview' style={{ marginLeft: 20 * depth }}>
@@ -103,24 +110,22 @@ class Answers extends Component {
             </label>
             <input
               value={this.state.answerNumber}
-              onChange={(e) => this.handleOptionChange(e, id, selectType)}
+              onChange={(e) => this.handleOptionChange(e, id, selectType, condition)}
             />
           </form>
         );
-        break;
       default:
         return (
           <form className='preview' style={{ marginLeft: 20 * depth }}>
             <label className='question-preview'>
               {question}{depth}{formType}
             </label>
-            <input 
-            value={this.state.answerText}
-            onChange={(e) => this.handleOptionChange(e, id, selectType)}
+            <input
+              value={this.state.answerText}
+              onChange={(e) => this.handleOptionChange(e, id, selectType)}
             />
           </form>
         );
-        break;
     }
   }
 }

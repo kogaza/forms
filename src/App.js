@@ -116,10 +116,13 @@ class App extends Component {
     let indexElementToShow= forms.findIndex(p => p.id === id);
     if(bool){
       forms[indexElementToShow+1].show = bool;
+
     }
     else {
-      let numberOfElements = forms.filter(p => p.parentNumber === parentNr);
-      for(let i = indexElementToShow+1; i < numberOfElements.length+indexElementToShow; i++){
+      let elementsToRemove = forms.filter(p => p.parentNumber === parentNr);
+      let lastElementPositionId = elementsToRemove[elementsToRemove.length-1].id;
+      let lastElementToRemove = forms.findIndex(p => p.id === lastElementPositionId);
+      for(let i = indexElementToShow+1; i < lastElementToRemove+1; i++){
         forms[i].show = bool;
       }
     }

@@ -32,9 +32,6 @@ class NextForm extends React.Component {
   }
   changeCondition = (condition, value) => {
     const forms = this.state.forms;
-    console.log('condition: ', condition);
-    console.log('value: ', value);
-    console.log('idArray: ', this.props.idArray);
     forms[this.props.idArray].condition = condition;
     forms[this.props.idArray].value = value;
     this.setState({

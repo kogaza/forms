@@ -6,7 +6,9 @@ class Answers extends Component {
     super(props);
     this.state = {
       forms: [],
-      selectedOption: ''
+      selectedOption: '',
+      answerText: '',
+      answerNumber: ''
     }
   }
   componentWillMount() {
@@ -14,23 +16,46 @@ class Answers extends Component {
       forms: this.props.forms,
     })
   }
-  handleOptionChange = (e, id) => {
-    const { depth } = this.props;
+  handleOptionChange = (e, id, selectType) => {
     const { forms } = this.state;
     let position = forms.findIndex(p => p.id === id);
     let actualElement = forms.find(p => p.id === id);
     let nextElement = forms[position + 1];
     if (actualElement.parentNumber === nextElement.parentNumber) {
+      console.log('next element: ',nextElement.value);
+      console.log('actual element: ',e.target.value)
       if (nextElement.value == e.target.value) {
         this.props.showForm(id, true);
       } else {
         this.props.showForm(id, false, actualElement.parentNumber);
       }
     }
-    this.setState({
-      selectedOption: e.target.value
-    });
+    switch (selectType) {
+      case 'true-false':
+        return (
+          this.setState({
+            selectedOption: e.target.value,
+          })
+        );
+        break;
+      case 'number':
+        return (
+          this.setState({
+            answerNumber: e.target.value
+          })
+        );
+        break;
+      default:
+        return (
+          this.setState({
+            answerText: e.target.value
+          })
+        );
+        break;
+    }
   }
+
+
   render() {
     const { depth, question, selectType, formType, show, id } = this.props;
     const { forms } = this.state;
@@ -54,7 +79,7 @@ class Answers extends Component {
                     type='radio'
                     value='yes'
                     checked={this.state.selectedOption === 'yes'}
-                    onChange={(e) => this.handleOptionChange(e, id)}
+                    onChange={(e) => this.handleOptionChange(e, id, selectType)}
                   /> Yes
                   </label>
                 <label>
@@ -62,7 +87,7 @@ class Answers extends Component {
                     type='radio'
                     value='no'
                     checked={this.state.selectedOption === 'no'}
-                    onChange={(e) => this.handleOptionChange(e, id)}
+                    onChange={(e) => this.handleOptionChange(e, id, selectType)}
                   /> No
                   </label>
               </div>
@@ -76,7 +101,10 @@ class Answers extends Component {
             <label className='question-preview'>
               {question}{depth}{formType}
             </label>
-            <input />
+            <input
+              value={this.state.answerNumber}
+              onChange={(e) => this.handleOptionChange(e, id, selectType)}
+            />
           </form>
         );
         break;
@@ -86,7 +114,10 @@ class Answers extends Component {
             <label className='question-preview'>
               {question}{depth}{formType}
             </label>
-            <input />
+            <input 
+            value={this.state.answerText}
+            onChange={(e) => this.handleOptionChange(e, id, selectType)}
+            />
           </form>
         );
         break;

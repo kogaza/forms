@@ -53,7 +53,7 @@ class FirstForm extends React.Component {
             <option value="number">Number</option>
           </select>
           <div className="buttons">
-            <div className="button" onClick={() => addForm(idForms, 2, selectType, 1, question, parentNr)}>Add Sub-Input</div>
+            <div className="button" onClick={() => addForm(idForms, 2, selectType, 1, '', parentNr)}>Add Sub-Input</div>
             <div className="button" onClick={() => delForm(idForms)}>Delete</div>
           </div>
         </form>

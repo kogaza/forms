@@ -68,8 +68,11 @@ class App extends Component {
     this.setState({ [key]: value });
   }
 
-  addForm = (idForms, formType, selectType, depth, question, parentNr) => {
+  addForm = (idForms, formType, selectType, depth, question, parentNr, condition, value) => {
     let forms = this.state.forms;
+    console.log('forms: ', forms);
+    console.log('condition: ', condition);
+    console.log('value: ', value);
     let elementNr = this.state.elementNr;
     let firstCount = forms.filter((p, i) => p.formType === 1);
     let parentNumber = this.state.parentNumber;
@@ -78,12 +81,12 @@ class App extends Component {
       if (firstCount.length >= 3) {
         alert('Więcej nie można');
       } else {
-        forms.push({ id: elementNr, formType, selectType, depth, question, parentNumber });
+        forms.push({ id: elementNr, formType, selectType, depth, question, parentNumber, condition: null, value: null });
       }
     } else {
       parentNumber = parentNr;
       let idArray = forms.findIndex(p => p.id === idForms);
-      forms.splice(idArray + 1, 0, { id: elementNr, formType, selectType, depth, question, parentNumber });
+      forms.splice(idArray + 1, 0, { id: elementNr, formType, selectType, depth, question, parentNumber, condition, value });
     }
     this.setState({
       forms,
@@ -140,7 +143,11 @@ class App extends Component {
               forms={this.state.forms}
             />
           )} />
-          <Route path='/preview' render={() => <Preview test={this.state} />} />
+          <Route path='/preview' render={() => (
+            <Preview
+              forms={this.state.forms}
+            />
+          )} />
           <Route path='/export' component={Export} />
         </div >
       </Router>

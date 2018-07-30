@@ -2,13 +2,12 @@ import React from 'react';
 
 class YesNo extends React.Component {
   render() {
-    const { depth, question, selectType } = this.props;
+    const { depth, question, selectType, formType } = this.props;
     return (
       <div>
-        <h1>YesNo</h1>
-        <form className='answer'>
+        <form className='answer' style={{ marginLeft: 20* depth}}>
           <label>
-            {question}
+            {question}{depth}{formType}
           </label>
           <div className='inputs-radio'>
             <input

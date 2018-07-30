@@ -97,21 +97,26 @@ button {
   padding: 4px;
   width: 30%;
 }
-.answer {
-  border: 1px solid black;
+.preview {
   display: flex;
   flex-direction: column;
+  margin-top: 50px;
 }
-.answer label {
-  border: 1px solid blue;
+.question-preview {
   width: 300px;
   margin: 0;
 }
 .inputs-radio {
-  border: 1px solid red;
   width: 200px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   padding: 5px;
+}
+.inputs-radio label {
+  display: flex;
+  flex-direction: row;
+}
+.inputs-radio input {
+  width: 50px;
 }

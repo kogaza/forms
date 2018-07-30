@@ -70,9 +70,6 @@ class App extends Component {
 
   addForm = (idForms, formType, selectType, depth, question, parentNr, condition, value) => {
     let forms = this.state.forms;
-    console.log('forms: ', forms);
-    console.log('condition: ', condition);
-    console.log('value: ', value);
     let elementNr = this.state.elementNr;
     let firstCount = forms.filter((p, i) => p.formType === 1);
     let parentNumber = this.state.parentNumber;
@@ -81,17 +78,53 @@ class App extends Component {
       if (firstCount.length >= 3) {
         alert('Więcej nie można');
       } else {
-        forms.push({ id: elementNr, formType, selectType, depth, question, parentNumber, condition: null, value: null });
+        forms.push({ 
+          id: elementNr, 
+          formType, 
+          selectType, 
+          depth, 
+          question, 
+          parentNumber, 
+          condition: null, 
+          value: null, 
+          show: true 
+        });
       }
     } else {
       parentNumber = parentNr;
       let idArray = forms.findIndex(p => p.id === idForms);
-      forms.splice(idArray + 1, 0, { id: elementNr, formType, selectType, depth, question, parentNumber, condition, value });
+      forms.splice(idArray + 1, 0, { 
+        id: elementNr, 
+        formType, 
+        selectType, 
+        depth, 
+        question, 
+        parentNumber, 
+        condition, 
+        value, 
+        show: false 
+      });
     }
     this.setState({
       forms,
       parentNumber,
       elementNr: elementNr + 1
+    })
+  }
+  showForm = (id,bool,parentNr) => {
+    let forms = this.state.forms;
+    let indexElementToShow= forms.findIndex(p => p.id === id);
+    if(bool){
+      forms[indexElementToShow+1].show = bool;
+    }
+    else {
+      let numberOfElements = forms.filter(p => p.parentNumber === parentNr);
+      for(let i = indexElementToShow+1; i < numberOfElements.length+indexElementToShow; i++){
+        forms[i].show = bool;
+      }
+    }
+    this.setState({
+      forms
     })
   }
   delForm = (id) => {
@@ -146,6 +179,7 @@ class App extends Component {
           <Route path='/preview' render={() => (
             <Preview
               forms={this.state.forms}
+              showForm={this.showForm}
             />
           )} />
           <Route path='/export' component={Export} />

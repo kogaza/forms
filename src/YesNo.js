@@ -6,7 +6,7 @@ class YesNo extends React.Component {
     return (
       <div>
         <h1>YesNo</h1>
-        <form className='yes-no'>
+        <form className='answer'>
           <label>
             {question}
           </label>

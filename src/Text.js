@@ -6,8 +6,13 @@ class Text extends React.Component {
     return (
       <div>
         <h1>Text</h1>
-        <p>{question}</p>
-        <span>{selectType}</span>
+        <form className='answer'>
+          <label>
+            {question}
+          </label>
+          <input />
+        </form>
+
       </div>
     );
   }

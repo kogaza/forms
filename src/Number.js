@@ -5,9 +5,14 @@ class Number extends React.Component {
     const { depth, question, selectType} = this.props;
     return (
       <div>
-        <h1>Number</h1>
-        <p>{question}</p>
-        <span>{selectType}</span>
+        <h1>Text</h1>
+        <form className='answer'>
+          <label>
+            {question}
+          </label>
+          <input />
+        </form>
+
       </div>
     );
   }

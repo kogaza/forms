@@ -97,19 +97,19 @@ button {
   padding: 4px;
   width: 30%;
 }
-.yes-no {
+.answer {
   border: 1px solid black;
-  width: 200px;
   display: flex;
   flex-direction: column;
 }
-.yes-no label {
+.answer label {
   border: 1px solid blue;
-  width: 200px;
+  width: 300px;
   margin: 0;
 }
 .inputs-radio {
   border: 1px solid red;
+  width: 200px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;

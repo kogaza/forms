@@ -28,7 +28,7 @@ class Answers extends Component {
     }
     if (actualElement.parentNumber === nextElement.parentNumber) {
       if (condition === 'equals') {
-        if (e.target.valuee === value) {
+        if (e.target.value === value) {
           this.props.showForm(id, true);
         } else {
           this.props.showForm(id, false, actualElement.parentNumber);

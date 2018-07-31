@@ -100,8 +100,8 @@ class App extends Component {
         depth,
         question,
         parentNumber,
-        condition,
-        value,
+        condition:'',
+        value:'',
         show: false
       });
     }

@@ -44,7 +44,7 @@ class ConditionForm extends React.Component {
             <select
               className="condition"
               onChange={p => this.changeCondition(p, idArray)}
-              value={forms[idArray].value}
+              value={forms[idArray].condition}
             >
               <option value="Equals">Equals</option>
             </select>

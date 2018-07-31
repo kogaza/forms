@@ -22,7 +22,10 @@ class Answers extends Component {
     let actualElement = forms.find(p => p.id === id);
     let nextElement = forms[position + 1];
     let condition = nextElement.condition;
-    let value = parseInt(nextElement.value);
+    let value = nextElement.value;
+    if(actualElement.selectType === 'number'){
+      value = parseInt(value);
+    }
     if (actualElement.parentNumber === nextElement.parentNumber) {
       if (condition === 'equals') {
         if (e.target.valuee === value) {

@@ -1,11 +1,12 @@
-import React from 'react';
+import React,{ Component} from 'react';
 
-const Export = () => {
-  return (
-    <div>
-      <h1>Export</h1>
-    </div>
-  );
+class Export extends Component {
+
+  render() {
+    const json = JSON.stringify(this.props.state);
+    return (
+      <div>{json}</div>
+    )
+  }
 }
-
 export default Export;

@@ -78,31 +78,31 @@ class App extends Component {
       if (firstCount.length >= 3) {
         alert('Więcej nie można');
       } else {
-        forms.push({ 
-          id: elementNr, 
-          formType, 
-          selectType, 
-          depth, 
-          question, 
-          parentNumber, 
-          condition: null, 
-          value: null, 
-          show: true 
+        forms.push({
+          id: elementNr,
+          formType,
+          selectType,
+          depth,
+          question,
+          parentNumber,
+          condition: null,
+          value: null,
+          show: true
         });
       }
     } else {
       parentNumber = parentNr;
       let idArray = forms.findIndex(p => p.id === idForms);
-      forms.splice(idArray + 1, 0, { 
-        id: elementNr, 
-        formType, 
-        selectType, 
-        depth, 
-        question, 
-        parentNumber, 
-        condition, 
-        value, 
-        show: false 
+      forms.splice(idArray + 1, 0, {
+        id: elementNr,
+        formType,
+        selectType,
+        depth,
+        question,
+        parentNumber,
+        condition,
+        value,
+        show: false
       });
     }
     this.setState({
@@ -111,18 +111,18 @@ class App extends Component {
       elementNr: elementNr + 1
     })
   }
-  showForm = (id,bool,parentNr) => {
+  showForm = (id, bool, parentNr) => {
     let forms = this.state.forms;
-    let indexElementToShow= forms.findIndex(p => p.id === id);
-    if(bool){
-      forms[indexElementToShow+1].show = bool;
+    let indexElementToShow = forms.findIndex(p => p.id === id);
+    if (bool) {
+      forms[indexElementToShow + 1].show = bool;
 
     }
     else {
       let elementsToRemove = forms.filter(p => p.parentNumber === parentNr);
-      let lastElementPositionId = elementsToRemove[elementsToRemove.length-1].id;
+      let lastElementPositionId = elementsToRemove[elementsToRemove.length - 1].id;
       let lastElementToRemove = forms.findIndex(p => p.id === lastElementPositionId);
-      for(let i = indexElementToShow+1; i < lastElementToRemove+1; i++){
+      for (let i = indexElementToShow + 1; i < lastElementToRemove + 1; i++) {
         forms[i].show = bool;
       }
     }
@@ -185,7 +185,11 @@ class App extends Component {
               showForm={this.showForm}
             />
           )} />
-          <Route path='/export' component={Export} />
+          <Route path='/export' render={() => (
+            <Export
+            state={this.state}
+            />
+          )} />
         </div >
       </Router>
     );

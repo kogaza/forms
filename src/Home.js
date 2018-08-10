@@ -6,7 +6,7 @@ import NextForm from './NextForm';
 class Home extends Component {
   render() {
     return (
-      <div className="container">
+      <div>
         {this.props.forms.map((p, i) => p.formType === 1 ?
           <FirstForm
             addForm={this.props.addForm}

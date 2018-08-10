@@ -42,7 +42,7 @@ class NextForm extends React.Component {
     const { selectType, forms } = this.state;
     const { addForm, delForm, idArray, idForms, depth, parentNr } = this.props;
     return (
-      <div className="frame" id={this.props.idArray} style={{ marginLeft: 20 * depth }}>
+      <div className="frame" id={this.props.idArray} style={{ marginLeft: 20 * depth + 10 }}>
         <form className="next">
           <div className="first-line">
             <label htmlFor="condition" className="label-condition">Condition</label>

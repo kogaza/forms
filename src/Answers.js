@@ -81,7 +81,7 @@ class Answers extends Component {
           <div>
             <form className='preview' style={{ marginLeft: 20 * depth }}>
               <label className='question-preview'>
-                {question}{depth}{formType}
+                {question}
               </label>
               <div className='inputs-radio'>
                 <label>
@@ -109,7 +109,7 @@ class Answers extends Component {
         return (
           <form className='preview' style={{ marginLeft: 20 * depth }}>
             <label className='question-preview'>
-              {question}{depth}{formType}
+              {question}
             </label>
             <input
               value={this.state.answerNumber}
@@ -121,7 +121,7 @@ class Answers extends Component {
         return (
           <form className='preview' style={{ marginLeft: 20 * depth }}>
             <label className='question-preview'>
-              {question}{depth}{formType}
+              {question}
             </label>
             <input
               value={this.state.answerText}
